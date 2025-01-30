@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f0f4f8;
+      background-color: black;
+    }
+
+    .container {
+      display: flex;
+      width: 700px;
+      height: 450px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 10px 10px 20px rgb(88, 185, 245) ;
+    }
+
+    .left {
+      background: linear-gradient(135deg, #6b9feb, #136a8a);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      padding: 30px;
+    }
+
+    .left h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .left p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .left button {
+      padding: 12px 30px;
+      font-size: 16px;
+      color: #519ab5;
+      background: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .left button:hover {
+      background: #ddd;
+    }
+
+    .right {
+      flex: 1;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 30px;
+    }
+
+    .right h2 {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .right input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .right button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      color: #fff;
+      background: rgb(88, 185, 245) ;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .right button:hover {
+      background: #2eabd9;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: -15px;
+      margin-bottom: 10px;
+    }
+    a{
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h2>Welcome!</h2>
+      <p>To keep connected with us please login with your personal info.</p>
+      <button><a href="signin.html">Sign In</button></a>
+    </div>
+    <div class="right">
+      <h2>Sign Up</h2>
+      <form id="signInForm">
+        <input type="name" id="email" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <span class="error" id="emailError"></span>
+        <input type="password" id="password" placeholder="Password">
+        <span class="error" id="passwordError"></span>
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("signInForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let emailError = document.getElementById("emailError");
+      let passwordError = document.getElementById("passwordError");
+
+      emailError.textContent = "";
+      passwordError.textContent = "";
+
+      if (!email) {
+        emailError.textContent = "Email is required.";
+      } else if (!/\S+@\S+\.\S+/.test(email)) {
+        emailError.textContent = "Please enter a valid email.";
+      }
+
+      if (!password) {
+        passwordError.textContent = "Password is required.";
+      } else if (password.length < 6) {
+        passwordError.textContent = "Password must be at least 6 characters.";
+      }
+
+      if (!emailError.textContent && !passwordError.textContent) {
+        alert("Sign In successful!");
+      }
+    });
+  </script>
+</body>
+</html>
